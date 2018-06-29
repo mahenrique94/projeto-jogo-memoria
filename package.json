@@ -1,0 +1,19 @@
+{
+    "name": "projeto-jogo-memoria",
+    "version": "1.0.0",
+    "description": "A memory game for finish the Udacity Nanodegree",
+    "main": "server.js",
+    "scripts": {
+        "lint" : "eslint .",
+        "precommit" : "npm run lint",
+        "server" : "live-server",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Matheus Castiglioni <matheushcastiglioni@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^5.0.1",
+        "husky": "^0.14.3",
+        "live-server": "^1.2.0"
+    }
+}

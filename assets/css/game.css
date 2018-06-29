@@ -1,0 +1,204 @@
+:root {
+    --background : #FDFDFD;
+    --bgMemory : #2B3D4A;
+    --bgMemoryHover : #1C2830;
+    --colorPrimary : #00C8BD;
+    --colorSecondary : #4BA1C9;
+    --colorThird : #7892CD;
+    --colorFourth : #AE7CD2;
+    --colorSuccess : #00D0BA;
+    --colorError : #FF8080;
+    --gap : 2rem;
+    --scaleMemoeryHover : 1.15;
+}
+
+.game {
+    align-items: center;
+    background: linear-gradient(to bottom right, var(--colorPrimary), var(--colorSecondary), var(--colorThird), var(--colorFourth));
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.game__title {
+    color: var(--background);
+    margin: -1rem 0 3rem;
+    text-align: center;
+}
+
+.game__play {
+    display: grid;
+    grid-gap: var(--gap);
+    grid-template-areas: 
+        "memory1 memory2 memory3 memory4"
+        "memory5 memory6 memory7 memory8"
+        "memory9 memory10 memory11 memory12"
+        "memory13 memory14 memory15 memory16";
+}
+
+.game__memory {
+    align-items: center;
+    background: var(--bgMemory);
+    border-radius: 5px;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    transition: all .2s ease-in-out;
+    width: 100px;
+}
+.game__memory:hover, .game__memory.is-selected {
+    background: var(--bgMemoryHover);
+    cursor: pointer;
+    transform: scale(var(--scaleMemoeryHover));
+}
+.game__memory.is-selected, .game__memory.is-matched {
+    pointer-events: none;
+}
+.game__memory.is-selected > .game__memory___type, .game__memory.is-matched > .game__memory___type {
+    display: block;
+}
+.game__memory.is-matched {
+    animation: matched 1s linear forwards;
+}
+.game__memory.is-unmatched {
+    animation: unmatched 1s linear forwards;
+}
+
+.game__memory:nth-child(1) {
+    grid-area: memory1;
+}
+.game__memory:nth-child(2) {
+    grid-area: memory2;
+}
+.game__memory:nth-child(3) {
+    grid-area: memory3;
+}
+.game__memory:nth-child(4) {
+    grid-area: memory4;
+}
+.game__memory:nth-child(5) {
+    grid-area: memory5;
+}
+.game__memory:nth-child(6) {
+    grid-area: memory6;
+}
+.game__memory:nth-child(7) {
+    grid-area: memory7;
+}
+.game__memory:nth-child(8) {
+    grid-area: memory8;
+}
+.game__memory:nth-child(9) {
+    grid-area: memory9;
+}
+.game__memory:nth-child(10) {
+    grid-area: memory10;
+}
+.game__memory:nth-child(11) {
+    grid-area: memory11;
+}
+.game__memory:nth-child(12) {
+    grid-area: memory12;
+}
+.game__memory:nth-child(13) {
+    grid-area: memory13;
+}
+.game__memory:nth-child(14) {
+    grid-area: memory14;
+}
+.game__memory:nth-child(15) {
+    grid-area: memory15;
+}
+.game__memory:nth-child(16) {
+    grid-area: memory16;
+}
+
+.game__memory___type {
+    color: var(--background);
+    display: none;
+    font-size: 2rem;
+}
+
+.game__start {
+    background: var(--background);
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 10rem;
+    transition: all .1s linear, transform .5s ease-in-out;
+}
+.game__start:hover {
+    background: var(--colorSuccess);
+    color: var(--background);
+    transform: rotateX(180deg);
+}
+.game__start:hover .game__start___text {
+    transform: rotateX(-180deg);
+}
+
+.game__start___text {
+    display: inline-block;
+    transition: transform .5s ease-in-out;
+}
+
+@keyframes matched {
+    0% {
+        background: var(--bgMemoryHover);
+        transform: scale(var(--scaleMemoryHover));
+    }
+    20% {
+        transform: scale(var(--scaleMemoryHover));
+    }
+    30% {
+        transform: scale(.5);
+    }
+    40% {
+        transform: scale(1.12);
+    }
+    50% {
+        transform: scale(.7);
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        background: var(--colorSuccess);
+        transform: scale(1);
+    }
+}
+
+@keyframes unmatched {
+    0% {
+        background: var(--bgMemoryHover);
+        transform: scale(var(--scaleMemoryHover));
+    }
+    20% {
+        transform: skew(5deg, 5deg);
+    }
+    30% {
+        transform: skew(-5deg, -5deg);
+    }
+    40% {
+        transform: skew(10deg, 10deg);
+    }
+    50% {
+        transform: skew(-10deg, -10deg);
+    }
+    60% {
+        transform: skew(15deg, 15deg);
+    }
+    70% {
+        transform: skew(-15deg, -15deg);
+    }
+    80% {
+        transform: skew(20deg, 20deg);
+    }
+    90% {
+        transform: skew(-20deg, -20deg);
+    }
+    100% {
+        background: var(--colorError);
+        transform: scale(1);
+    }
+}
