@@ -24,8 +24,31 @@
 
 .game__title {
     color: var(--background);
-    margin: -1rem 0 3rem;
+    margin: -1rem 0 .5rem;
     text-align: center;
+}
+
+.game__info {
+    color: var(--background);
+    display: none;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+}
+
+.game__congratulations {    
+    display: none;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: var(--gap);
+    text-shadow: -2px -2px rgba(255, 255, 255, .7);
+    text-transform: uppercase;
+}
+.game__congratulations.is-winner {
+    color: var(--colorSuccess);
+}
+.game__congratulations.is-loser {
+    color: var(--colorError);
 }
 
 .game__play {

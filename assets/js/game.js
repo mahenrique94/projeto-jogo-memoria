@@ -17,14 +17,26 @@ const MEMORY_TYPES = [
     "qq",
     "qq"
 ]
+const MOVIMENTS = 7
+const SOUND_TRACK = new Audio("./assets/tracks/soundtrack.mp3")
+SOUND_TRACK.loop = true
 
 const gamePlay = document.querySelector(".js-gamePlay")
+const gameCongratulations = document.querySelector(".js-gameCongratulations")
+const gameInfo = document.querySelector(".js-gameInfo")
+const gameMoviments = document.querySelector(".js-gameMoviments")
 const playButton = document.querySelector(".js-playButton")
 
 const createGame = (matriz = []) => matriz.forEach(line => insertInGame(line))
-const hidePlayButton = () => playButton.style.display = "none"
+const hideElement = element => element.style.display = "none"
 const insertInGame = line => line.forEach(memory => gamePlay.appendChild(memoryTemplate(memory)))
+const play = track => new Audio(`./assets/tracks/${track}.mp3`).play()
+const playMatched  = () => play("matched")
+const playSoundTrack = () => SOUND_TRACK.play()
+const playUnMatched  = () => play("unmatched")
 const removeSelectedClass = (...types) => types.forEach(type => type.classList.remove("is-selected"))
+const resetGame = () => gamePlay.innerHTML = ""
+const showElement = (element, display = "") => element.style.display = display.length ? display : "block"
 const typesSelectedsAreEquals = (first, second) => first.dataset.type === second.dataset.type
 
 function addMatched(...types) {
@@ -41,6 +53,36 @@ function addUnMatchedClass(...types) {
             type.classList.remove("is-selected")        
         }, 1000)
     })
+}
+
+function checkLose() {
+    if (parseInt(gameMoviments.textContent) === 0) {
+        gameCongratulations.textContent = "Sorry, you lose !!!"
+        gameCongratulations.classList.add("is-loser")
+        finishGame()
+    }
+}
+
+function checkWon() {
+    const memoryPending = gamePlay.querySelector("[data-matched=false")
+    if (!memoryPending) {        
+        gameCongratulations.textContent = "Congratulations, you win !!!"
+        gameCongratulations.classList.add("is-winner")
+        finishGame()
+    }
+}
+
+function decreaseAttempts() {
+    gameMoviments.textContent = parseInt(gameMoviments.textContent) - 1
+}
+
+function finishGame() {
+    playButton.children[0].textContent = "Play Again"
+    hideElement(gamePlay)
+    hideElement(gameInfo)
+    showElement(playButton)
+    showElement(gameCongratulations)
+    SOUND_TRACK.pause()
 }
 
 function memoryTemplate(type) {
@@ -87,15 +129,26 @@ function sortMemories() {
 
 // eslint-disable-next-line
 function startGame() {
-    hidePlayButton()
+    gameMoviments.textContent = MOVIMENTS
+    resetGame()
     createGame(sortMemories())
+    hideElement(playButton)
+    hideElement(gameCongratulations)
+    showElement(gamePlay, "grid")
+    showElement(gameInfo)
+    playSoundTrack()
 }
 
 function typesMatched(first, second) {
     removeSelectedClass(first, second)
     addMatched(first, second)
+    playMatched()
+    checkWon()
 }
 
 function typesUnMatched(first, second) {
     addUnMatchedClass(first, second)
+    decreaseAttempts()
+    playUnMatched()
+    checkLose()
 }
