@@ -4,15 +4,26 @@
     "description": "A memory game for finish the Udacity Nanodegree",
     "main": "server.js",
     "scripts": {
-        "lint" : "eslint .",
-        "precommit" : "npm run lint",
-        "server" : "live-server",
+        "build": "gulp",
+        "lint": "eslint .",
+        "precommit": "npm run lint",
+        "server": "live-server",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Matheus Castiglioni <matheushcastiglioni@gmail.com>",
     "license": "ISC",
     "devDependencies": {
+        "del": "^3.0.0",
         "eslint": "^5.0.1",
+        "gulp": "^4.0.0",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-clean-css": "^3.9.4",
+        "gulp-concat": "^2.6.1",
+        "gulp-html-replace": "^1.6.2",
+        "gulp-htmlmin": "^4.0.0",
+        "gulp-minify": "^3.1.0",
+        "gulp-sourcemaps": "^2.6.4",
+        "gulp-uglify": "^3.0.0",
         "husky": "^0.14.3",
         "live-server": "^1.2.0"
     }
