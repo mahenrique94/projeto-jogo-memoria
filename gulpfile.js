@@ -1,11 +1,20 @@
+// eslint-disable-next-line
 const autoprefixer = require("gulp-autoprefixer")
+// eslint-disable-next-line
 const cleanCss = require("gulp-clean-css")
+// eslint-disable-next-line
 const concat = require("gulp-concat")
+// eslint-disable-next-line
 const del = require("del")
+// eslint-disable-next-line
 const gulp = require("gulp")
+// eslint-disable-next-line
 const htmlmin = require("gulp-htmlmin")
+// eslint-disable-next-line
 const htmlReplace = require("gulp-html-replace")
+// eslint-disable-next-line
 const minify = require("gulp-minify")
+// eslint-disable-next-line
 const sourcemaps = require("gulp-sourcemaps")
 
 const CONFIG = {
@@ -57,7 +66,7 @@ gulp.task("cssmin", function() {
         .pipe(sourcemaps.init())
         .pipe(autoprefixer({ browsers : CONFIG.css_prefixes }))
         .pipe(cleanCss())
-        .pipe(concat(`game.min.css`))
+        .pipe(concat("game.min.css"))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(CONFIG.dest.css))
 })
@@ -80,7 +89,7 @@ gulp.task("jsmin", function() {
                 min : ".min.js"
             },
             noSource : true
-         }))
+        }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(CONFIG.dest.js))
 })
