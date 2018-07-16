@@ -90,6 +90,7 @@ gulp.task("jsmin", function() {
             },
             noSource : true
         }))
+        .pipe(concat("game.min.js"))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(CONFIG.dest.js))
 })

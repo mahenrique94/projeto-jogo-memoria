@@ -8,7 +8,8 @@
     --colorFourth : #AE7CD2;
     --colorSuccess : #00D0BA;
     --colorError : #FF8080;
-    --gap : 2rem;
+    --gap : 1.5rem;
+    --memorySize : 75px;
     --scaleMemoeryHover : 1.15;
 }
 
@@ -24,7 +25,7 @@
 
 .game__title {
     color: var(--background);
-    margin: -1rem 0 .5rem;
+    margin: -2rem 0 .5rem;
     text-align: center;
 }
 
@@ -32,7 +33,21 @@
     color: var(--background);
     display: none;
     letter-spacing: 1px;
+    margin-bottom: .75rem;
+}
+
+.game__restart {
+    background: var(--background);
+    border: none;
+    border-radius: 3px;
+    display: none;
+    font-size: .9rem;
     margin-bottom: 3rem;
+    padding: .5rem .75rem;
+    transition: box-shadow .1s ease-in;
+}
+.game__restart:hover {
+    box-shadow: inset 0 0 5px 100px rgba(0, 0, 0, .2);
 }
 
 .game__congratulations {    
@@ -52,7 +67,7 @@
 }
 
 .game__play {
-    display: grid;
+    display: none;
     grid-gap: var(--gap);
     grid-template-areas: 
         "memory1 memory2 memory3 memory4"
@@ -66,10 +81,10 @@
     background: var(--bgMemory);
     border-radius: 5px;
     display: flex;
-    height: 100px;
+    height: var(--memorySize);
     justify-content: center;
     transition: all .2s ease-in-out;
-    width: 100px;
+    width: var(--memorySize);
 }
 .game__memory:hover, .game__memory.is-selected {
     background: var(--bgMemoryHover);
@@ -87,6 +102,9 @@
 }
 .game__memory.is-unmatched {
     animation: unmatched 1s linear forwards;
+}
+.game__memory.is-disabled {
+    pointer-events: none;
 }
 
 .game__memory:nth-child(1) {
@@ -148,6 +166,8 @@
     background: var(--background);
     border: none;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
     padding: 1rem 10rem;
     transition: all .1s linear, transform .5s ease-in-out;
 }
@@ -163,6 +183,30 @@
 .game__start___text {
     display: inline-block;
     transition: transform .5s ease-in-out;
+    white-space: nowrap;
+}
+
+.game__stats {
+    bottom: 10px;
+    display: none;
+    justify-content: space-between;
+    color: var(--background);
+    letter-spacing: 2px;
+    padding: 0 2.5rem;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.game__stats.is-winner {
+    display: block;
+    margin-top: -73px;
+    position: static;
+}
+.game__stats___stars {
+    padding: 0 2rem;
+}
+.game__stats___star {
+    color: var(--background);
 }
 
 @keyframes matched {

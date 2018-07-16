@@ -9,6 +9,7 @@
     <link href="./assets/css/normalize.css" rel="stylesheet">
     <link href="./assets/css/reset.css" rel="stylesheet">
     <link href="./assets/css/game.css" rel="stylesheet">
+    <link href="./assets/css/game-responsive.css" rel="stylesheet">
     <link href="./assets/css/fontello/css/fontello.css" rel="stylesheet">
     <link href="./assets/css/fontello/css/animation.css" rel="stylesheet">
     <!-- endbuild -->
@@ -17,11 +18,22 @@
     <main class="game">
         <h1 class="game__title">Memory Game</h1>
         <p class="game__info js-gameInfo">Attempts remaining: <span class="game__info___moves js-gameMoviments"></span></p>
+        <button class="game__restart js-restartButton" onclick="startGame()" type="button"><span class="game__start___text">Restart</span></button>
         <p class="game__congratulations js-gameCongratulations"></p>
         <section class="game__play js-gamePlay"></section>
         <button class="game__start js-playButton" onclick="startGame()" type="button"><span class="game__start___text">Play</span></button>
+        <p class="game__stats js-gameStats">
+            <span class="game__stats___time js-gameTime"></span>
+            <span class="game__stats___stars js-gameScore">
+                <i class="game__stats___star icon-star-empty"></i>
+                <i class="game__stats___star icon-star-empty"></i>
+                <i class="game__stats___star icon-star-empty"></i>
+            </span>
+            <span class="game__stats___moviments js-gameMovimentsDone"></span>
+        </p>
     </main>
     <!-- build:js -->
+    <script src="./assets/js/moment.js"></script>
     <script src="./assets/js/game.js"></script>
     <!-- endbuild -->
 </body>
